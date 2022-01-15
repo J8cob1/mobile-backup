@@ -1,12 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import Home from './components/Home';
+
+// Here, we describe all our routes (including their props -- undefined indicates no props)
+// "Home" is the name of the "Home" route
+export type RootStackParamList = {
+  Home: undefined;
+};
+
+const Root = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Root.Navigator>
+        <Root.Screen name="Home" component={Home}/>
+      </Root.Navigator>
+    </NavigationContainer>
   );
 }
 
